@@ -378,12 +378,21 @@
         };
         
         function openModal(articleId) {
-            const modal = document.getElementById('articleModal');
-            const modalImage = document.getElementById('modalImage');
-            modalImage.src = articleImages[articleId];
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
+    const modal = document.getElementById('articleModal');
+    const modalImage = document.getElementById('modalImage');
+    const wenSound = document.getElementById('wenSound');
+    
+    // Play sound when modal opens
+    wenSound.currentTime = 0; // Reset to start
+    wenSound.play().catch(function(error) {
+        // Some browsers block autoplay, this prevents errors
+        console.log('Audio play failed:', error);
+    });
+    
+    modalImage.src = articleImages[articleId];
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
         
         function closeModal() {
             const modal = document.getElementById('articleModal');

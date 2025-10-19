@@ -351,62 +351,66 @@
     </div>
     
     <script>
-        // Glitch effect for header
-        const glitchChars = "₿ΞΘΛΠΣΩ$@#%";
-        const originalText = "THE $WEN TIMES";
-        const glitchElement = document.getElementById('glitchText');
-        
-        setInterval(() => {
-            if (Math.random() > 0.92) {
-                const glitched = originalText.split('').map(char => 
-                    Math.random() > 0.6 ? glitchChars[Math.floor(Math.random() * glitchChars.length)] : char
-                ).join('');
-                glitchElement.textContent = glitched;
-                setTimeout(() => {
-                    glitchElement.textContent = originalText;
-                }, 80);
-            }
-        }, 2000);
-        
-        // Modal functionality
-        const articleImages = {
-1: 'images/article1.jpg',
-            2: 'https://placehold.co/1200x1600/000000/00ff00?text=FULL+ARTICLE+2',
-            3: 'https://placehold.co/1200x1600/000000/00ff00?text=FULL+ARTICLE+3',
-            4: 'https://placehold.co/1200x1600/000000/00ff00?text=FULL+ARTICLE+4',
-            5: 'https://placehold.co/1200x1600/000000/00ff00?text=FULL+ARTICLE+5',
-            6: 'https://placehold.co/1200x1600/000000/00ff00?text=FULL+ARTICLE+6'
-        };
-        
-        function openModal(articleId) {
-    const modal = document.getElementById('articleModal');
-    const modalImage = document.getElementById('modalImage');
-    const wenSound = document.getElementById('wenSound');
-    
-    // Play sound when modal opens
-    wenSound.currentTime = 0; // Reset to start
-    wenSound.play().catch(function(error) {
-        // Some browsers block autoplay, this prevents errors
-        console.log('Audio play failed:', error);
+    // Ensure page is scrollable on load
+    document.addEventListener('DOMContentLoaded', function() {
+        document.body.style.overflow = 'auto';
     });
+
+    // Glitch effect for header
+    const glitchChars = "₿ΞΘΛΠΣΩ$@#%";
+    const originalText = "THE $WEN TIMES";
+    const glitchElement = document.getElementById('glitchText');
     
-    modalImage.src = articleImages[articleId];
-    modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-}
-        
-        function closeModal() {
-            const modal = document.getElementById('articleModal');
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto';
+    setInterval(() => {
+        if (Math.random() > 0.92) {
+            const glitched = originalText.split('').map(char => 
+                Math.random() > 0.6 ? glitchChars[Math.floor(Math.random() * glitchChars.length)] : char
+            ).join('');
+            glitchElement.textContent = glitched;
+            setTimeout(() => {
+                glitchElement.textContent = originalText;
+            }, 80);
         }
+    }, 2000);
+    
+    // Modal functionality
+    const articleImages = {
+        1: 'images/article1.jpg',
+        2: 'images/article1.jpg',
+        3: 'https://placehold.co/1200x1600/000000/00ff00?text=FULL+ARTICLE+3',
+        4: 'https://placehold.co/1200x1600/000000/00ff00?text=FULL+ARTICLE+4',
+        5: 'https://placehold.co/1200x1600/000000/00ff00?text=FULL+ARTICLE+5',
+        6: 'https://placehold.co/1200x1600/000000/00ff00?text=FULL+ARTICLE+6'
+    };
+    
+    function openModal(articleId) {
+        const modal = document.getElementById('articleModal');
+        const modalImage = document.getElementById('modalImage');
+        const wenSound = document.getElementById('wenSound');
         
-        // Close modal on Escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeModal();
-            }
+        // Play sound when modal opens
+        wenSound.currentTime = 0;
+        wenSound.play().catch(function(error) {
+            console.log('Audio play failed:', error);
         });
-    </script>
+        
+        modalImage.src = articleImages[articleId];
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    
+    function closeModal() {
+        const modal = document.getElementById('articleModal');
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+    
+    // Close modal on Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeModal();
+        }
+    });
+</script>
 </body>
 </html>

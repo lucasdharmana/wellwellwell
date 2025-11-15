@@ -1,0 +1,73 @@
+/* Character Animation Styles for WELL WELL WELL Website */
+
+/* Character container styles - applied via JavaScript */
+.character {
+    /* Base styles are set via JavaScript for dynamic positioning */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Ensure smooth rendering on all devices */
+.character img {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    pointer-events: none;
+}
+
+/* Mobile-specific optimizations */
+@media (max-width: 768px) {
+    .character {
+        /* Additional mobile optimizations applied via JavaScript */
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+    }
+}
+
+/* Character fade-in animation */
+@keyframes characterFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Character type specific overrides */
+.character-jew {
+    /* Jew character faces left (default, no flip) */
+}
+
+.character-africa {
+    /* Africa character faces right (flipped in JS) */
+}
+
+.character-india {
+    /* India character faces right (flipped in JS) */
+}
+
+/* Prevent layout shift during character load */
+.section-divider {
+    position: relative;
+}
+
+/* Debug mode - uncomment to see character bounding boxes */
+/*
+.character {
+    outline: 2px solid red !important;
+}
+.character::before {
+    content: attr(class);
+    position: absolute;
+    top: -20px;
+    left: 0;
+    background: yellow;
+    padding: 2px 5px;
+    font-size: 10px;
+    z-index: 1000;
+}
+*/
